@@ -4,7 +4,7 @@ import { UpdateRegionDto } from './dto/update-region.dto';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
-export class RegionService {
+export class RegionsService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreateRegionDto) {

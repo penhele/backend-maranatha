@@ -7,27 +7,27 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { CongregationService } from './congregation.service';
+import { CongregationsService } from './congregations.service';
 import { CreateCongregationDto } from './dto/create-congregation.dto';
 import { UpdateCongregationDto } from './dto/update-congregation.dto';
 
-@Controller('congregation')
-export class CongregationController {
-  constructor(private readonly congregationService: CongregationService) {}
+@Controller('congregations')
+export class CongregationsController {
+  constructor(private readonly congregationsService: CongregationsService) {}
 
   @Post()
   create(@Body() createCongregationDto: CreateCongregationDto) {
-    return this.congregationService.create(createCongregationDto);
+    return this.congregationsService.create(createCongregationDto);
   }
 
   @Get()
   findAll() {
-    return this.congregationService.findAll();
+    return this.congregationsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.congregationService.findOne(+id);
+    return this.congregationsService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class CongregationController {
     @Param('id') id: string,
     @Body() updateCongregationDto: UpdateCongregationDto,
   ) {
-    return this.congregationService.update(+id, updateCongregationDto);
+    return this.congregationsService.update(id, updateCongregationDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.congregationService.remove(+id);
+    return this.congregationsService.remove(id);
   }
 }
