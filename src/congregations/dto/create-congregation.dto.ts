@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import {
   IsDate,
   IsNotEmpty,
+  IsOptional,
   IsPhoneNumber,
   IsString,
   IsUUID,
@@ -21,4 +22,7 @@ export class CreateCongregationDto {
 
   @IsUUID()
   regionId!: string;
+
+  @IsUUID()
+  pelkatId!: string;
 }

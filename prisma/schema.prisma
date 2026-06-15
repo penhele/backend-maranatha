@@ -15,6 +15,11 @@ model Congregation {
   regionId String
   region   Region @relation(fields: [regionId], references: [id])
 
+  pelkatId String
+  pelkat   Pelkat @relation(fields: [pelkatId], references: [id])
+
+  leadership Leadership?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -23,7 +28,47 @@ model Region {
   id   String @id @default(uuid())
   name String
 
-  Congregation Congregation[]
+  congregations Congregation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Pelkat {
+  id          String @id @default(ulid())
+  name        String
+  description String
+
+  congregations Congregation[]
+  leaderships   Leadership[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Leadership {
+  id String @id @default(ulid())
+
+  positionId String
+  position   Position @relation(fields: [positionId], references: [id])
+
+  congregationId String       @unique
+  congregation   Congregation @relation(fields: [congregationId], references: [id])
+
+  pelkatId String
+  pelkat   Pelkat @relation(fields: [pelkatId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([pelkatId, positionId])
+}
+
+model Position {
+  id   String @id @default(ulid())
+  name String
+
+  Leadership Leadership[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

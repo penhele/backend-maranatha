@@ -8,11 +8,19 @@ export class CongregationsService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreateCongregationDto) {
-    return this.prisma.congregation.create({ data: dto });
+    return this.prisma.congregation.create({
+      data: dto,
+    });
   }
 
   async findAll() {
-    return this.prisma.congregation.findMany();
+    return this.prisma.congregation.findMany({
+      include: {
+        region: true,
+        pelkat: true,
+        leadership: true,
+      },
+    });
   }
 
   async findOne(id: string) {
