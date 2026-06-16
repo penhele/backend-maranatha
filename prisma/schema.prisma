@@ -35,7 +35,7 @@ model Region {
 }
 
 model Pelkat {
-  id          String @id @default(ulid())
+  id          String @id @default(uuid())
   name        String
   description String
 
@@ -47,16 +47,16 @@ model Pelkat {
 }
 
 model Leadership {
-  id String @id @default(ulid())
+  id String @id @default(uuid())
 
   positionId String
-  position   Position @relation(fields: [positionId], references: [id])
+  position   Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
 
   congregationId String       @unique
-  congregation   Congregation @relation(fields: [congregationId], references: [id])
+  congregation   Congregation @relation(fields: [congregationId], references: [id], onDelete: Cascade)
 
   pelkatId String
-  pelkat   Pelkat @relation(fields: [pelkatId], references: [id])
+  pelkat   Pelkat @relation(fields: [pelkatId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -65,7 +65,7 @@ model Leadership {
 }
 
 model Position {
-  id   String @id @default(ulid())
+  id   String @id @default(uuid())
   name String
 
   Leadership Leadership[]

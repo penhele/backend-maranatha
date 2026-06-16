@@ -2,7 +2,6 @@ import { Type } from 'class-transformer';
 import {
   IsDate,
   IsNotEmpty,
-  IsOptional,
   IsPhoneNumber,
   IsString,
   IsUUID,
