@@ -14,7 +14,13 @@ export class LeadershipsService {
   }
 
   async findAll() {
-    return this.prisma.leadership.findMany();
+    return this.prisma.leadership.findMany({
+      include: {
+        congregation: true,
+        pelkat: true,
+        position: true,
+      },
+    });
   }
 
   async update(id: string, dto: UpdateLeadershipDto) {
