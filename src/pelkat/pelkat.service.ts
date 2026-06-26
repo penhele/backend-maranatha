@@ -14,7 +14,11 @@ export class PelkatService {
   }
 
   async findAll() {
-    return this.prisma.pelkat.findMany();
+    return this.prisma.pelkat.findMany({
+      include: {
+        congregations: true,
+      },
+    });
   }
 
   async findOne(id: string) {
