@@ -16,7 +16,11 @@ export class PelkatService {
   async findAll() {
     return this.prisma.pelkat.findMany({
       include: {
-        congregations: true,
+        congregations: {
+          include: {
+            region: true,
+          },
+        },
         _count: true,
       },
     });
