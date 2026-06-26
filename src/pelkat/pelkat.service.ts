@@ -17,6 +17,7 @@ export class PelkatService {
     return this.prisma.pelkat.findMany({
       include: {
         congregations: true,
+        _count: true,
       },
     });
   }
